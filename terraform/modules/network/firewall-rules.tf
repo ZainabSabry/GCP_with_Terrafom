@@ -2,6 +2,8 @@
 #   name    = "task-firewall"
 #   network = google_compute_network.vpc_network.name
 #   source_ranges = [ "0.0.0.0/0" ]
+#   priority = 1100
+
 
 #   deny {
 #     protocol = "all"
@@ -14,6 +16,7 @@
 #   network = google_compute_network.vpc_network.name
 #   destination_ranges = [ "0.0.0.0/0" ]
 #   direction = "EGRESS"
+#   priority = 1100
 
 #   deny {
 #     protocol = "all"
@@ -56,3 +59,15 @@ resource "google_compute_firewall" "allow-iap" {
   }
 }
 
+# resource "google_compute_firewall" "allow-ingress-to-loadbalancer" {
+#   name    = "allow-ingress-to-loadbalancer"
+#   network = google_compute_network.vpc_network.name
+#   source_ranges = ["0.0.0.0/0"]
+#   direction = "INGRESS"
+#   priority = 700
+
+#   allow {
+#     protocol = "TCP"
+#     ports = [ "80" ]
+#   }
+# }
