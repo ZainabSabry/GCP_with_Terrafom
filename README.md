@@ -88,6 +88,17 @@ $ docker tag IMAGE-NAME:latest gcr.io/PROJECT-ID/TAG
 $ docker push gcr.io/PROJECT-ID/TAG
 ```
 
+7- Pull the redis image from Docker Hub and push it to gcr so that the private cluster can pull it:
+
+```bash
+$ docker pull redis
+
+$ docker tag redis:latest gcr.io/PROJECT-ID/TAG
+
+$ docker push gcr.io/PROJECT-ID/TAG
+```
+
+
 ## Deploying and Accessing Application with Kubernetes
 
 ### Configuring the management instance:
