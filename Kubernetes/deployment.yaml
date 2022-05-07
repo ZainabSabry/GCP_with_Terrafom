@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo-dep
+  name: demo-dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-dep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-dep
+    spec:
+      containers:
+      - image: gcr.io/zaina-348512/demo-app
+        name: demo
+        ports:
+        - containerPort: 8000
+        env:
+        - name: ENVIRONMENT
+          value: "DEV"
+        - name: HOST
+          value: "demo-dep.default.svc.cluster.local"
+        - name: PORT
+          value: "8000"
+        - name: REDIS_HOST
+          value: "redis-pod.default.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_DB
+          value: "0"
+        resources: {}
+status: {}
